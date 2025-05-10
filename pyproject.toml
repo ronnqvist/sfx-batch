@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sfx-batch"
+version = "0.1.0"
+description = "CLI tool for batch sound effects generation using elevenlabs-sfx"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"} # Assuming MIT, can be changed later
+authors = [
+    {name = "Your Name", email = "you@example.com"}, # Placeholder
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License", # Assuming MIT
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Sound Synthesis",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "typer[all]", # Using [all] for rich tracebacks and shell completion
+    "python-dotenv",
+    # For development, elevenlabs-sfx is a local path dependency.
+    # This will be changed to a PyPI version for distribution.
+    # "elevenlabs-sfx @ file:///../elevenlabs-sfx" # This is one way, but setuptools handles local paths differently.
+                                                # We'll use an editable install approach.
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    # Add other dev dependencies like linters (flake8, black, ruff) if desired
+]
+# For local development of elevenlabs-sfx, it's better to install it in editable mode
+# from its own directory. For sfxbatch to find it, we can add it to PYTHONPATH
+# or ensure it's installed in the same environment.
+# The prompt specifies: `elevenlabs-sfx = {path = "../elevenlabs-sfx", develop = true}`
+# This syntax is for Poetry/PDM. For setuptools, we'll rely on an editable install
+# of the local `elevenlabs-sfx` project.
+
+[project.urls]
+Homepage = "https://github.com/yourusername/sfx-batch" # Placeholder
+Repository = "https://github.com/yourusername/sfx-batch" # Placeholder
+
+[project.scripts]
+sfx-batch = "sfx_batch.main:app"
+
+[tool.setuptools]
+# If using setuptools.
+# For local path dependencies with setuptools, it's often handled by installing
+# the dependency in editable mode (`pip install -e ../elevenlabs-sfx`) in the same
+# virtual environment.
+# The `dependencies` array will list `elevenlabs-sfx` once it's on PyPI.
+# For now, we'll assume `elevenlabs-sfx` will be installed separately in editable mode
+# from its local path `../elevenlabs-sfx`.
+packages = ["sfx_batch"]
+# package_dir = {"" = "."} # Tells setuptools that packages are in the root - REMOVED due to schema validation error
+# If sfx-batch module is inside a src directory, it would be:
+# package_dir = {"" = "src"}
+# packages = find: {where = "src"}
+
+# [tool.setuptools.packages.find] # If using find directive
+# where = ["src"]  # look in the src/ directory for packages

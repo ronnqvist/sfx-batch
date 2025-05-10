@@ -1,0 +1,6 @@
+SFX_Prompt;Category;Notes
+"A majestic eagle soaring through a canyon";Nature;For a documentary intro
+"Laser blast, ricochet, and explosion";Sci-Fi;Space battle sequence
+"Old rusty door creaking open slowly";Horror;Haunted house scene
+"error_parameter test prompt";Test;Should log a parameter error
+"error_generation test prompt";Test;Should log a generation error
